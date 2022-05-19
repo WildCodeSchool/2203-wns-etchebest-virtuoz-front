@@ -2,13 +2,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
 import { gql, useQuery } from "@apollo/client";
-import { users } from "./_app";
+import { users, status } from "./_app";
 
 const Home: NextPage = () => {
-  const { loading, error, data } = useQuery(users);
+  const allStatus = useQuery(status);
+  const allUsers = useQuery(users);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (allStatus.loading || allUsers.loading) return <p>Loading...</p>;
+  if (allStatus.error || allStatus.loading) return <p>Error :(</p>;
 
   return (
     <div className={styles.container}>
@@ -19,7 +20,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {data.allUsers.map(({ email, name }: { email: any; name: any }) => (
+        {allStatus.data.allStatus.map(({ name }: { name: any }) => (
+          <div key={name}>
+          <p>
+            {name}
+          </p>
+        </div>
+        ))}
+        {allUsers.data.allUsers.map(({ email, name }: { email: any; name: any }) => (
           <div key={name}>
             <p>
               {email}: {name}
