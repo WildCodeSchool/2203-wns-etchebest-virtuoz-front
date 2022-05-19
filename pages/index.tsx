@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
 import { gql, useQuery } from "@apollo/client";
-import { EXCHANGE_RATES } from "./_app";
+import { users } from "./_app";
 
 const Home: NextPage = () => {
-  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+  const { loading, error, data } = useQuery(users);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

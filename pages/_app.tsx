@@ -13,20 +13,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query GetAlluser {
-        allUsers {
-          email
-          name
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
-
-export const EXCHANGE_RATES = gql`
+export const users = gql`
   query GetAlluser {
     allUsers {
       email
