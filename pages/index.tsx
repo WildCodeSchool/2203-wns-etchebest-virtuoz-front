@@ -19,6 +19,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <p>list</p>
         {data.allUsers.map(({ email, name }: { email: any; name: any }) => (
           <div key={name}>
             <p>
