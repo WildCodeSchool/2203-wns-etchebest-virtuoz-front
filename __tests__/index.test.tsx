@@ -1,41 +1,38 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { findByText, render, screen, waitFor } from "@testing-library/react";
 import TestRenderer from "react-test-renderer";
-import Home from "../pages/index";
 import "@testing-library/jest-dom";
 import { MockedProvider } from "@apollo/client/testing";
 import { users } from "pages/_app";
+import Home from "pages";
 
-afterEach(cleanup);
 const mocks = [
   {
     request: {
       query: users,
     },
-    result: () => {
-      return {
-        data: {
-          getAllUsers: [
-            {
-              id: "1",
-              email: "test",
-              name: "sdi",
-              password: "test",
-            },
-            {
-              id: "2",
-              email: "moss",
-              name: "Moss",
-              password: "moss",
-            },
-            {
-              id: "3",
-              email: "mosspop",
-              name: "Moss",
-              password: "moss",
-            },
-          ],
-        },
-      };
+    result: {
+      data: {
+        AllUsers: [
+          {
+            id: "1",
+            email: "test",
+            name: "sdi",
+            password: "test",
+          },
+          {
+            id: "2",
+            email: "moss",
+            name: "Moss",
+            password: "moss",
+          },
+          {
+            id: "3",
+            email: "mosspop",
+            name: "Moss",
+            password: "moss",
+          },
+        ],
+      },
     },
   },
 ];
@@ -47,8 +44,7 @@ describe("Home", () => {
         <Home />
       </MockedProvider>
     );
-
-    const element = await screen.getByText("oading...");
-    expect(element).toBeInTheDocument;
+    const element = await waitFor(() => screen.getByText("list"));
+    expect(element).toBeInTheDocument();
   });
 });
