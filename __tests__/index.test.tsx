@@ -12,7 +12,7 @@ const mocks = [
     },
     result: {
       data: {
-        AllUsers: [
+        allUsers: [
           {
             id: "1",
             email: "test",

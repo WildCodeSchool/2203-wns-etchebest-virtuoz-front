@@ -1,7 +1,7 @@
+import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
-import { gql, useQuery } from "@apollo/client";
 import { users } from "./_app";
 
 const Home: NextPage = () => {
@@ -10,6 +10,13 @@ const Home: NextPage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
+  function testNum({ a }: { a: number }): string {
+    let result;
+    const newLocal = (result = a > 0 ? "positive" : "NOT positive");
+    return newLocal;
+  }
+
+  console.log(testNum({ a: -5 }));
   return (
     <div className={styles.container}>
       <Head>
