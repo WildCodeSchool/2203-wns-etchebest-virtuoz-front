@@ -9,7 +9,8 @@ const Home: NextPage = () => {
   const allUsers = useQuery(users);
 
   if (allStatus.loading || allUsers.loading) return <p>Loading...</p>;
-  if (allStatus.error || allStatus.loading) return <p>Error :(</p>;
+  if (allStatus.error || allStatus.loading)
+    return <p className="text-3xl font-bold underline">Error :(</p>;
 
   return (
     <div className={styles.container}>
@@ -22,18 +23,18 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         {allStatus.data.allStatus.map(({ name }: { name: any }) => (
           <div key={name}>
-          <p>
-            {name}
-          </p>
-        </div>
-        ))}
-        {allUsers.data.allUsers.map(({ email, name }: { email: any; name: any }) => (
-          <div key={name}>
-            <p>
-              {email}: {name}
-            </p>
+            <p>{name}</p>
           </div>
         ))}
+        {allUsers.data.allUsers.map(
+          ({ email, name }: { email: any; name: any }) => (
+            <div key={name}>
+              <p>
+                {email}: {name}
+              </p>
+            </div>
+          )
+        )}
       </main>
     </div>
   );
