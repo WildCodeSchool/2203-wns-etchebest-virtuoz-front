@@ -26,6 +26,7 @@
     "prettier/prettier": "error",
     "@typescript-eslint/require-await": "error",
     "@typescript-eslint/indent": ["error"],
+    "@typescript-eslint/no-duplicate-imports": ["error"],
     "react/function-component-definition": [
       2,
       {
