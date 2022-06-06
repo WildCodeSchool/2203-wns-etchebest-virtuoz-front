@@ -17,7 +17,8 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "__dirname"
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
@@ -34,5 +35,10 @@
         "unnamedComponents": "arrow-function"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"] // Your TypeScript files extension
+    }
+  ]
 }
