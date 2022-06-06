@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Index.module.css";
 import { gql, useQuery } from "@apollo/client";
+import styles from "../styles/Index.module.css";
 import { users, status } from "./_app";
 
 const Home: NextPage = () => {
