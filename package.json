@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "next-without-ssr",
   "private": true,
   "scripts": {
