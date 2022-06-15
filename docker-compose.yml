@@ -8,6 +8,7 @@ services:
       CHOKIDAR_USEPOLLING: "true"
     ports:
       - 4000:4000
+    container_name: server
     command: npm run dev
     volumes:
       - ../2203-wns-etchebest-virtuoz-back/src/:/app/src/
@@ -17,6 +18,7 @@ services:
     restart: always
     ports:
       - "4466:4466"
+    container_name: prismagraphql
     environment:
       PRISMA_CONFIG: |
         port: 4466
@@ -37,12 +39,14 @@ services:
     restart: always
     ports:
       - 8080:8080
+    container_name: adminer
 
   mysql:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: prisma
+    container_name: mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
