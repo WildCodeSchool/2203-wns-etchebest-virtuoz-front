@@ -15,7 +15,7 @@ const client = new ApolloClient({
 
 export const users = gql`
   query GetAlluser {
-    allUsers {
+    getAllUsers {
       email
       name
     }
@@ -24,7 +24,7 @@ export const users = gql`
 
 export const status = gql`
   query GetAllstatus {
-    allStatus {
+    getAllStatus {
       name
     }
   }
