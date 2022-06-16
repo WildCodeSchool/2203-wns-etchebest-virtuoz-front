@@ -1,21 +1,16 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from "@apollo/client";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 export const users = gql`
   query GetAlluser {
-    allUsers {
+    getAllUsers {
       email
       name
     }
@@ -24,7 +19,7 @@ export const users = gql`
 
 export const status = gql`
   query GetAllstatus {
-    allStatus {
+    getAllStatus {
       name
     }
   }

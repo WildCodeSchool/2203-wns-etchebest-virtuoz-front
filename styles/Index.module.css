@@ -1,8 +1,8 @@
-.container {
+/* .container {
   padding: 0 2rem;
   color: #39424e;
   background-color: #f76c6c;
-}
+} */
 
 .main {
   min-height: 100vh;
@@ -26,11 +26,11 @@
   font-size: 1.5rem;
 }
 
-.code {
+/* .code {
   background: #fafafa;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
-}
+} */

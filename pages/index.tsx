@@ -6,12 +6,12 @@ import { users, status } from "./_app";
 import SideNavbar from "../components/SideNavbar";
 
 const Home: NextPage = () => {
-  // const allStatus = useQuery(status);
-  // const allUsers = useQuery(users);
+  const getAllStatus = useQuery(status);
+  const getAllUsers = useQuery(users);
 
-  // if (allStatus.loading || allUsers.loading) return <p>Loading...</p>;
-  // if (allStatus.error || allStatus.loading)
-  //   return <p className="text-3xl font-bold underline">Error :(</p>;
+  if (getAllStatus.loading || getAllUsers.loading) return <p>Loading...</p>;
+  if (getAllStatus.error || getAllUsers.loading)
+    return <p className="text-3xl font-bold underline">Error :(</p>;
 
   return (
     <div className={styles.container}>
@@ -21,22 +21,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SideNavbar />
-      {/* <main className={styles.main}>
-        {allStatus.data.allStatus.map(({ name }: { name: any }) => (
+      <main className={styles.main}>
+        {getAllStatus.data.getAllStatus.map(({ name }: { name: any }) => (
           <div key={name}>
             <p>{name}</p>
           </div>
         ))}
-        {allUsers.data.allUsers.map(
-          ({ email, name }: { email: any; name: any }) => (
-            <div key={name}>
-              <p>
-                {email}: {name}
-              </p>
-            </div>
-          )
-        )}
-      </main> */}
+        {getAllUsers.data.getAllUsers.map(({ email, name }: { email: any; name: any }) => (
+          <div key={name}>
+            <p>
+              {email}: {name}
+            </p>
+          </div>
+        ))}
+      </main>
     </div>
   );
 };
