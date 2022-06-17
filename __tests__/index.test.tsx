@@ -38,7 +38,7 @@ describe("Home", () => {
         <Home />
       </MockedProvider>
     );
-    const element = await waitFor(() => screen.getByText("Moss"));
+    const element = await waitFor(() => screen.getByText("@moss: Moss"));
     expect(element).toBeInTheDocument();
   });
 });

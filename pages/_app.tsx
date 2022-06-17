@@ -16,7 +16,7 @@ const client = new ApolloClient({
 });
 
 export const users = gql`
-  query GetAlluser {
+  query getAllUsers {
     getAllUsers {
       email
       name
@@ -25,7 +25,7 @@ export const users = gql`
 `;
 
 export const status = gql`
-  query GetAllstatus {
+  query getAllStatus {
     getAllStatus {
       name
     }

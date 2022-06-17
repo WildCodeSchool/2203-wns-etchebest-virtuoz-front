@@ -5,11 +5,11 @@ import styles from "../styles/Index.module.css";
 import { users, status } from "./_app";
 
 const Home: NextPage = () => {
-  const getAllStatus = useQuery(status);
+  // const getAllStatus = useQuery(status);
   const getAllUsers = useQuery(users);
 
-  if (getAllStatus.loading || getAllUsers.loading) return <p>Loading...</p>;
-  if (getAllStatus.error || getAllUsers.error) return <p>Error :(</p>;
+  if (getAllUsers.loading) return <p>Loading...</p>;
+  // if (getAllUsers.error) return <p>Error :(</p>;
 
   function testNum({ a }: { a: number }): string {
     let result;
@@ -27,11 +27,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {getAllStatus.data.getAllStatus.map(({ name }: { name: any }) => (
+        {/* {getAllStatus.data.getAllStatus.map(({ name }: { name: any }) => (
           <div key={name}>
             <p>{name}</p>
           </div>
-        ))}
+        ))} */}
         {getAllUsers.data.getAllUsers.map(
           ({ email, name }: { email: any; name: any }) => (
             <div key={name}>
