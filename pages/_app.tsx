@@ -24,6 +24,14 @@ export const users = gql`
   }
 `;
 
+export const status = gql`
+  query getAllStatus {
+    getAllStatus {
+      name
+    }
+  }
+`;
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
