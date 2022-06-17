@@ -1,16 +1,23 @@
+import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
-import { gql, useQuery } from "@apollo/client";
 import { users, status } from "./_app";
 
 const Home: NextPage = () => {
-  const allStatus = useQuery(status);
-  const allUsers = useQuery(users);
+  const getAllStatus = useQuery(status);
+  const getAllUsers = useQuery(users);
 
-  if (allStatus.loading || allUsers.loading) return <p>Loading...</p>;
-  if (allStatus.error || allStatus.loading) return <p>Error :(</p>;
+  if (getAllStatus.loading || getAllUsers.loading) return <p>Loading...</p>;
+  if (getAllStatus.error || getAllUsers.error) return <p>Error :(</p>;
 
+  function testNum({ a }: { a: number }): string {
+    let result;
+    const newLocal = (result = a > 0 ? "positive" : "NOT positive");
+    return newLocal;
+  }
+
+  console.log(testNum({ a: -5 }));
   return (
     <div className={styles.container}>
       <Head>
@@ -20,20 +27,20 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {allStatus.data.allStatus.map(({ name }: { name: any }) => (
+        {getAllStatus.data.allStatus.map(({ name }: { name: any }) => (
           <div key={name}>
-          <p>
-            {name}
-          </p>
-        </div>
-        ))}
-        {allUsers.data.allUsers.map(({ email, name }: { email: any; name: any }) => (
-          <div key={name}>
-            <p>
-              {email}: {name}
-            </p>
+            <p>{name}</p>
           </div>
         ))}
+        {getAllUsers.data.getAllUsers.map(
+          ({ email, name }: { email: any; name: any }) => (
+            <div key={name}>
+              <p>
+                {email}: {name}
+              </p>
+            </div>
+          )
+        )}
       </main>
     </div>
   );

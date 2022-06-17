@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import fetch from "cross-fetch";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import {
@@ -6,16 +7,17 @@ import {
   InMemoryCache,
   ApolloProvider,
   gql,
+  HttpLink,
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  link: new HttpLink({ uri: "http://localhost:4000/", fetch }),
   cache: new InMemoryCache(),
 });
 
 export const users = gql`
   query GetAlluser {
-    allUsers {
+    getAllUsers {
       email
       name
     }
@@ -24,7 +26,7 @@ export const users = gql`
 
 export const status = gql`
   query GetAllstatus {
-    allStatus {
+    getAllStatus {
       name
     }
   }

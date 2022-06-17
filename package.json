@@ -5,20 +5,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@apollo/client": "^3.6.4",
+    "cross-fetch": "^3.1.5",
     "graphql": "^16.5.0",
+    "import": "^0.0.6",
     "next": "12.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
     "@types/node": "17.0.13",
     "@types/react": "17.0.38",
+    "@types/react-test-renderer": "^17.0.2",
     "eslint": "8.7.0",
     "eslint-config-next": "12.0.9",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "react-test-renderer": "^17.0.2",
+    "ts-node": "^10.7.0",
     "typescript": "4.5.5"
   }
 }
