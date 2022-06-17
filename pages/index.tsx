@@ -2,14 +2,14 @@ import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Index.module.css";
-import { users, status } from "./_app";
+import { users } from "./_app";
 
 const Home: NextPage = () => {
   // const getAllStatus = useQuery(status);
   const getAllUsers = useQuery(users);
 
   if (getAllUsers.loading) return <p>Loading...</p>;
-  // if (getAllUsers.error) return <p>Error :(</p>;
+  if (getAllUsers.error) return <p>Error :::(</p>;
 
   function testNum({ a }: { a: number }): string {
     let result;
