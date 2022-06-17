@@ -16,8 +16,8 @@ const client = new ApolloClient({
 });
 
 export const users = gql`
-  query Query {
-    allUsers {
+  query GetAlluser {
+    getAllUsers {
       email
       name
     }

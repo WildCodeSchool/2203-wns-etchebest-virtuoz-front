@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const { loading, error, data } = useQuery(users);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p>Error :::(</p>;
 
   function testNum({ a }: { a: number }): string {
     let result;
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <p>list</p>
-        {data.allUsers.map(({ email, name }: { email: any; name: any }) => (
+        {data.getAllUsers.map(({ email, name }: { email: any; name: any }) => (
           <div key={name}>
             <p>
               {email}: {name}
