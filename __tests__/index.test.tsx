@@ -12,7 +12,7 @@ const mocks = [
     },
     result: {
       data: {
-        allUsers: [
+        getAllUsers: [
           {
             id: "1",
             email: "test",
@@ -21,15 +21,9 @@ const mocks = [
           },
           {
             id: "2",
-            email: "moss",
+            email: "@moss",
             name: "Moss",
-            password: "moss",
-          },
-          {
-            id: "3",
-            email: "mosspop",
-            name: "Moss",
-            password: "moss",
+            password: "mosspassword",
           },
         ],
       },
@@ -44,7 +38,7 @@ describe("Home", () => {
         <Home />
       </MockedProvider>
     );
-    const element = await waitFor(() => screen.getByText("list"));
+    const element = await waitFor(() => screen.getByText("Moss"));
     expect(element).toBeInTheDocument();
   });
 });

@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {getAllStatus.data.allStatus.map(({ name }: { name: any }) => (
+        {getAllStatus.data.getAllStatus.map(({ name }: { name: any }) => (
           <div key={name}>
             <p>{name}</p>
           </div>
