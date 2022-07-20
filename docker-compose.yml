@@ -15,37 +15,15 @@ services:
   server:
     depends_on:
       - mysql
-    build: ../2203-wns-etchebest-virtuoz-back
+    build: ../backend-virtuoz
     restart: always
     environment:
       CHOKIDAR_USEPOLLING: "true"
     ports:
       - 4000:4000
     container_name: server
-    command: npm run dev
     volumes:
-      - ../2203-wns-etchebest-virtuoz-back/src/:/back/src/
-
-  # prisma:
-  #   image: prismagraphql/prisma:1.23
-  #   restart: always
-  #   ports:
-  #     - "4466:4466"
-  #   container_name: prismagraphql
-  #   environment:
-  #     PRISMA_CONFIG: |
-  #       port: 4466
-  #       # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
-  #       # managementApiSecret: my-secret
-  #       databases:
-  #         default:
-  #           connector: mysql
-  #           host: mysql
-  #           port: 3306
-  #           user: root
-  #           password: prisma
-  #           migrations: true
-  #           rawAccess: true
+      - ../backend-virtuoz/src/:/back/src/
 
   adminer:
     image: adminer
@@ -65,7 +43,3 @@ services:
         ["CMD", "mysqladmin", "--password=prisma", "ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-    volumes:
-      - mysql:/var/lib/mysql
-volumes:
-  mysql:
