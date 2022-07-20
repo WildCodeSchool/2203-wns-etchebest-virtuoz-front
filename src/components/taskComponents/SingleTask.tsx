@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import styles from "../../styles/taskBoard.module.css";
-import { Task } from "type";
+import { Task } from "src/type";
 
 const SingleTask: React.FC<{
   index: number;
