@@ -24,7 +24,7 @@ The command to launch the test : yarn run test
 
 ## Docker
 
-the whole application can be launched on the front side of the project with the "docker compose up" command
+the whole application can be launched on the front side of the project if it's first time "docker compose up --build" or  "docker compose up" command
 
 ## Deploy on Vercel
 
