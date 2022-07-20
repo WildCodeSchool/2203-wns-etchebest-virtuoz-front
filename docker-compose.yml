@@ -22,7 +22,6 @@ services:
     ports:
       - 4000:4000
     container_name: server
-    command: npm run dev
     volumes:
       - ../2203-wns-etchebest-virtuoz-back/src/:/back/src/
 
