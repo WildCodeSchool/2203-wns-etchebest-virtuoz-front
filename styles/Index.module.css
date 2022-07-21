@@ -1,3 +1,11 @@
+.devicecontent {
+  width: 84%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
 .container {
   padding: 0 2rem;
   color: #39424e;
@@ -5,11 +13,32 @@
 }
 
 .main {
-  min-height: 100vh;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  border: 1px solid black;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  background-color: darkcyan;
+}
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 70%;
+  height: 100%;
 }
 
 .title {

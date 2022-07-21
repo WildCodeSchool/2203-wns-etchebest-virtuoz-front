@@ -22,11 +22,3 @@ body {
 a {
   text-decoration: none !important;
 }
-
-.devicecontent {
-  width: 84%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
