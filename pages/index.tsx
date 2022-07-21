@@ -36,7 +36,7 @@ const Home: NextPage = () => {
           ({ email, name }: { email: any; name: any }) => (
             <div key={name}>
               <p>
-                {email}: {name}
+                {name}: {email}
               </p>
             </div>
           )

@@ -1,13 +1,11 @@
 .container {
   padding: 0 2rem;
   color: #39424e;
-  background-color: #f76c6c;
+  background-color: white;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
