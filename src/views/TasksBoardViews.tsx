@@ -51,7 +51,7 @@ const TasksBoardViews = () => {
     } else if (source.droppableId === "Review") {
       add = review[source.index];
       review.splice(source.index, 1);
-    } else if (source.droppableId === "verified") {
+    } else if (source.droppableId === "Verified") {
       add = verified[source.index];
       verified.splice(source.index, 1);
     } else {
@@ -65,7 +65,7 @@ const TasksBoardViews = () => {
       review.splice(destination.index, 0, add);
     } else if (destination.droppableId === "In progress") {
       progress.splice(destination.index, 0, add);
-    } else if (destination.droppableId === "verified") {
+    } else if (destination.droppableId === "Verified") {
       verified.splice(destination.index, 0, add);
     } else {
       complete.splice(destination.index, 0, add);
