@@ -2,8 +2,8 @@ import { findByText, render, screen, waitFor } from "@testing-library/react";
 import TestRenderer from "react-test-renderer";
 import "@testing-library/jest-dom";
 import { MockedProvider } from "@apollo/client/testing";
-import { users } from "pages/_app";
-import Home from "pages";
+import { users } from "src/pages/_app";
+import Home from "src/pages";
 
 const mocks = [
   {

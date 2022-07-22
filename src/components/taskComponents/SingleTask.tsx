@@ -2,8 +2,24 @@ import { useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
+import { gql, useMutation } from "@apollo/client";
 import styles from "../../styles/taskBoard.module.css";
 import { Task } from "src/type";
+
+const DELETE_TASK = gql`
+  mutation Mutation($deleteTicketId: ID) {
+    deleteTicket(id: $deleteTicketId) {
+      id
+      title
+      content
+      createdAt
+      status
+      authorId
+      published
+      updatedAt
+    }
+  }
+`;
 
 const SingleTask: React.FC<{
   index: number;
@@ -11,10 +27,13 @@ const SingleTask: React.FC<{
   tasks: Array<Task>;
   setTasks: React.Dispatch<React.SetStateAction<Array<Task>>>;
 }> = ({ task, tasks, setTasks, index }) => {
+  const [deleteTicket] = useMutation(DELETE_TASK);
   const [edit, setEdit] = useState(false);
-  const [editTask, setEditTask] = useState(task.task);
+  const [editTask, setEditTask] = useState(task?.task);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  console.log("singleTask:", task);
 
   useEffect(() => {
     return inputRef.current?.focus();
@@ -29,29 +48,34 @@ const SingleTask: React.FC<{
   };
 
   const handleDelete = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    console.log("delete:", id);
+    deleteTicket({
+      variables: {
+        id: Number(id),
+      },
+    });
   };
 
-  const handleDone = (id: number) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, isDone: !task.isDone } : task
-      )
-    );
-  };
+  // const handleDone = (id: number) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === id ? { ...task, isDone: !task.isDone } : task
+  //     )
+  //   );
+  // };
 
   return (
     <Draggable
-      draggableId={task.id.toString()}
+      draggableId={task.id && task.id.toString()}
       index={index}
-      key={task.id.toString()}
+      key={task.id && task.id.toString()}
     >
       {(provided, snapshot) => (
         <form
           className={`${styles.tasks__single} ${
             snapshot.isDragging ? styles.drag : ""
           }`}
-          onSubmit={(e) => handleEdit(e, task.id)}
+          onSubmit={(e) => handleEdit(e, task.id as number)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -64,9 +88,9 @@ const SingleTask: React.FC<{
               ref={inputRef}
             />
           ) : task.isDone ? (
-            <s className={styles.tasks__single__text}>{task.task}</s>
+            <s className={styles.tasks__single__text}>{task.title}</s>
           ) : (
-            <span className={styles.tasks__single__text}>{task.task}</span>
+            <span className={styles.tasks__single__text}>{task.title}</span>
           )}
           <div>
             <span
@@ -79,12 +103,15 @@ const SingleTask: React.FC<{
             >
               <AiFillEdit />
             </span>
-            <span className={styles.icon} onClick={() => handleDelete(task.id)}>
+            <span
+              className={styles.icon}
+              onClick={() => handleDelete(task.id as number)}
+            >
               <AiFillDelete />
             </span>
-            <span className={styles.icon} onClick={() => handleDone(task.id)}>
+            {/* <span className={styles.icon} onClick={() => handleDone(task.id)}>
               <MdDone />
-            </span>
+            </span> */}
           </div>
         </form>
       )}

@@ -10,6 +10,7 @@ interface TasksListProps {
 }
 
 const TasksList: React.FC<TasksListProps> = ({ tasks, setTasks, status }) => {
+  console.log("tasksList:", tasks);
   return (
     <Droppable droppableId={status}>
       {(provided, snapshot) => (
@@ -25,7 +26,7 @@ const TasksList: React.FC<TasksListProps> = ({ tasks, setTasks, status }) => {
             <SingleTask
               tasks={tasks}
               task={task}
-              key={task.id}
+              key={task?.id}
               setTasks={setTasks}
               index={index}
             />

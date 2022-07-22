@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
 const LOGIN = gql`
   query login($email: String!, $password: String!) {
@@ -8,7 +9,7 @@ const LOGIN = gql`
   }
 `;
 
-const Login = () => {
+const Login: NextPage = () => {
   const [email, setEmail] = useState("admin@gmail.com");
   const [password, setPassword] = useState("p4ssw0rd");
 
