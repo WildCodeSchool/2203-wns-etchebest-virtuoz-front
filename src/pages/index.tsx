@@ -4,10 +4,12 @@ import Head from "next/head";
 import TasksBoardViews from "../views/TasksBoardViews";
 import styles from "../styles/Index.module.css";
 import { users } from "./_app";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   // const getAllStatus = useQuery(status);
   const getAllUsers = useQuery(users);
+  const router = useRouter();
 
   if (getAllUsers.loading) return <p>Loading...</p>;
   if (getAllUsers.error) return <p>Error :::(</p>;

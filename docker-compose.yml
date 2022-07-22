@@ -42,7 +42,3 @@ services:
         ["CMD", "mysqladmin", "--password=prisma", "ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-    volumes:
-      - mysql:/var/lib/mysql
-volumes:
-  mysql:

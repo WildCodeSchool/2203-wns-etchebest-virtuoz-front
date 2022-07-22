@@ -15,9 +15,9 @@ const Login: NextPage = () => {
 
   const [getToken, { data }] = useLazyQuery(LOGIN);
   const router = useRouter();
-  console.log(data);
+  console.log("data :", data);
   if (data) {
-    console.log(data);
+    console.log(data.login);
     localStorage.setItem("token", data.login);
   }
   return (
