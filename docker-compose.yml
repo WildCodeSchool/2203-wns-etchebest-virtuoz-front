@@ -8,9 +8,7 @@ services:
       - 3000:3000
     stdin_open: true
     volumes:
-      - ./pages:/front/pages
-      - ./public:/front/public
-      - ./styles:/front/styles
+      - ./src:/front/src
 
   server:
     depends_on:

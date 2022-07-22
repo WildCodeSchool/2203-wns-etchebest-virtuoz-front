@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import TasksBoardViews from '../views/TasksBoardViews';
 import styles from '../styles/Index.module.css';
 import { users } from './_app';
 import { useRouter } from 'next/router';
@@ -41,12 +42,8 @@ const Home: NextPage = () => {
         Logout
       </button>
       <main className={styles.main}>
-        {/* {getAllStatus.data.getAllStatus.map(({ name }: { name: any }) => (
-          <div key={name}>
-            <p>{name}</p>
-          </div>
-        ))} */}
-        {getAllUsers.data.getAllUsers.map(
+        <TasksBoardViews />
+        {/* {getAllUsers.data.getAllUsers.map(
           ({ email, name }: { email: any; name: any }) => (
             <div key={name}>
               <p>
@@ -54,7 +51,7 @@ const Home: NextPage = () => {
               </p>
             </div>
           )
-        )}
+        )} */}
       </main>
     </div>
   );
