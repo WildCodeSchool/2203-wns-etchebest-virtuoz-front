@@ -1,7 +1,7 @@
-import "../styles/globals.css";
-import fetch from "cross-fetch";
-import type { AppProps } from "next/app";
-import dynamic from "next/dynamic";
+import '../styles/globals.css';
+import fetch from 'cross-fetch';
+import type { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,8 +9,8 @@ import {
   gql,
   HttpLink,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 // const client = new ApolloClient({
 //   link: new HttpLink({ uri: "http://localhost:4000/", fetch }),
@@ -18,11 +18,11 @@ import { setContext } from "@apollo/client/link/context";
 //   link: authLink.concat(httpLink),
 // });
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: 'http://localhost:4000/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   return {
     headers: {
       ...headers,
@@ -41,6 +41,16 @@ export const users = gql`
     getAllUsers {
       email
       name
+    }
+  }
+`;
+
+export const createUser = gql`
+  mutation Mutation($name: String, $email: String, $password: String) {
+    createUser(name: $name, email: $email, password: $password) {
+      email
+      name
+      password
     }
   }
 `;
