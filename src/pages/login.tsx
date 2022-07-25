@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useLazyQuery, gql } from '@apollo/client';
-import { useRouter } from 'next/router';
+import { useState } from "react";
+import { useLazyQuery, gql } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const LOGIN = gql`
   query login($email: String!, $password: String!) {
@@ -9,15 +9,15 @@ const LOGIN = gql`
 `;
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [getToken, { data }] = useLazyQuery(LOGIN);
+  const [login, { data }] = useLazyQuery(LOGIN);
   const router = useRouter();
-  console.log('data :', data);
+
   if (data) {
     console.log(data.login);
-    localStorage.setItem('token', data.login);
+    localStorage.setItem("token", data.login);
   }
   return (
     <>
@@ -26,10 +26,10 @@ const Login = () => {
       <button
         onClick={async () => {
           try {
-            await getToken({ variables: { email: email, password: password } });
-            router.push('/');
+            await login({ variables: { email: email, password: password } });
+            router.push("/");
           } catch (err) {
-            console.log('Handle me', err);
+            console.log("Handle me", err);
           }
         }}
       >

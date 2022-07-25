@@ -1,75 +1,92 @@
-import { useMutation } from '@apollo/client';
-import { Router } from 'next/router';
-import React, { useState } from 'react';
-import { createUser } from './_app';
-import { useRouter } from 'next/router';
+import { gql, useLazyQuery, useMutation } from "@apollo/client";
+import { Router } from "next/router";
+import React, { useState } from "react";
+import { createUser } from "./_app";
+import { useRouter } from "next/router";
 
+const REGISTER = gql`
+  query Query($name: String, $email: String, $password: String) {
+    createUser(name: $name, email: $email, password: $password)
+  }
+`;
 const Registration = () => {
   const router = useRouter();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [addUser] = useMutation(createUser);
+  const [register, { data }] = useLazyQuery(REGISTER);
+
+  if (data) {
+    console.log(data.createUser);
+    localStorage.setItem("token", data.createUser);
+  }
 
   return (
-    <div className='registrationPage'>
-      <div className='form'>
+    <div className="registrationPage">
+      <div className="form">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            addUser({
-              variables: { name: name, email: email, password: password },
-            });
-            setName('');
-            setEmail('');
-            setPassword('');
-            alert('Registered');
-            router.push('/login');
+          onSubmit={async (e) => {
+            try {
+              e.preventDefault();
+              // addUser({
+              //   variables: { name: name, email: email, password: password },
+              // });
+              await register({
+                variables: { email: email, password: password, name: name },
+              });
+              setName("");
+              setEmail("");
+              setPassword("");
+              alert("Registered");
+              router.push("/");
+            } catch (err) {
+              console.log("Handle me", err);
+            }
           }}
         >
-          <p className='title'>Formulaire d&apos;inscription</p>
-          <div className='form-inner'>
+          <p className="title">Formulaire d&apos;inscription</p>
+          <div className="form-inner">
             <div>
               <input
-                type='text'
-                name='username'
-                id='firstname'
-                placeholder='Prénom'
+                type="text"
+                name="username"
+                id="firstname"
+                placeholder="Prénom"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
-                className='RegistrationInput'
+                className="RegistrationInput"
               />
             </div>
             <div>
               <input
-                type='text'
-                name='email'
-                id='email'
-                placeholder='E-mail'
+                type="text"
+                name="email"
+                id="email"
+                placeholder="E-mail"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className='RegistrationInput'
+                className="RegistrationInput"
               />
             </div>
             <div>
               <input
-                type='password'
-                name='Password'
-                id='Password'
-                placeholder='Mot de passe'
+                type="password"
+                name="Password"
+                id="Password"
+                placeholder="Mot de passe"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className='RegistrationInput'
+                className="RegistrationInput"
               />
             </div>
             <div>
               <button
-                type='submit'
-                value='Continuer'
-                className='buttonRegistration'
+                type="submit"
+                value="Continuer"
+                className="buttonRegistration"
               >
-                Register{' '}
+                Register{" "}
               </button>
             </div>
           </div>
