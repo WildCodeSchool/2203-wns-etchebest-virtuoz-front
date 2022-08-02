@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLazyQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
+import styles from '../styles/login.module.css';
 
 const LOGIN = gql`
   query login($email: String!, $password: String!) {
@@ -20,9 +21,18 @@ const Login = () => {
     localStorage.setItem('token', data.login);
   }
   return (
-    <>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} />
+    <div className={styles.container}>
+      <h3>Login</h3>
+      <input className={styles.input}
+        placeholder='email'
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input className={styles.input2}
+        placeholder='password'
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button
         onClick={async () => {
           try {
@@ -35,7 +45,7 @@ const Login = () => {
       >
         Login
       </button>
-    </>
+    </div>
   );
 };
 
